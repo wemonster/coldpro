@@ -1,0 +1,40 @@
+.clear{clear:both;} 
+html{font-family: sans-serif Helvetica;}
+.medium{width: 100%;position: relative;}
+.hide{display: none;}
+.homepage-video{
+    width:100%;
+    height: 100%;
+    overflow: hidden;
+    left:0;
+    right:0;
+    z-index:-1;
+    -webkit-filter:blur(5px);
+}
+body{height: 100%}
+#body{min-height: 100%;position: relative;}
+.icon-bar{background-color:blue;}
+nav{min-height: 50px;background-color: #e3f2fd;right: 0}
+.navbar{margin-bottom: 0;}
+.maincontent{width:100%;text-align: center;position: absolute;display: table;z-index: 1;top:25%;-webkit-filter:contrast(200%);}
+#bgvideo{min-width: 2000px;margin:0 auto;display:inline-block;float:none;overflow: hidden;z-index:-1;width: 100%;-webkit-filter:brightness(50%);}
+#recordarea{text-align: center;display: table-cell;vertical-align: middle;}
+#title{text-align: center;}
+.signs{max-width: 600px;margin: 0 auto;color:white;font-weight: 400}
+#startrecord{color:white;font-weight:700px;max-width: 600px;margin: 0 auto;}
+#startrecord i{color:#088EF6;margin-right:5px;}
+.recordbutton{max-width: 600px;margin: 10px auto auto auto}
+#gorecord{width:100%;height:30%;border-radius: 10px;border:2px solid #6F9AF3;font-size:35px;color:white;background:transparent;}
+#gorecord:hover{color:red;}
+.content-video .area:first-child{margin-bottom: 50px;}
+.content .brands li a img{width:100%;height:300px;}
+.content .brands li{list-style-type: none;float:left;display: inline-block;width: 20%;padding-right: 20px;}
+.content .videos li{float:left;display: inline-block;list-style-type: none;width: 20%;padding-right:20px;}
+.videos{margin-bottom: 0;}
+.video-item{margin-bottom: 20px;}
+.video{width:100%;}
+.title{display: block}
+.show{float:right;}
+.area{max-width: 1280px;margin:0 auto;}
+.subheadingleft{float:left;display: inline;}
+.subheadingright{float:right;display: inline;}

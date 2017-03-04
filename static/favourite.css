@@ -1,0 +1,72 @@
+/*header*/
+.clear{clear:both;}
+nav{background-color: #e3f2fd;min-height: 50px;}
+.icon-bar{background-color:blue;}
+.profile{max-width: 960px;margin: 0 auto;}
+.header{display: inline-block;width: 100%;text-align: center;position: relative;}
+.background{width: 100%;height:300px;z-index:-99;position: absolute;}
+.headercontent{position: relative;height: 300px;width: 100%}
+.headerwrap{position: absolute;width: 100%;height: 300px;}
+.icon{position:relative;margin:50px auto 0 auto;width: 100px;height: 100px;}
+.icon a img{width: 100px;height: 100px;}
+.username a{width:auto;height: auto;color:white;font-weight: normal;}
+.username{font-size: 22px;}
+.signiture a{font-size: 16px;color:white;}
+.follow{text-align: center;display: inline-block;padding: 12px 0}
+.follow-table tbody tr td{padding:0 15px}
+.tabledata{border-left-width: 1px;border-left-style: solid;border-color: #BEB2B2;}
+.tabledata a{color:black;}
+.tabledata1 a{color:black;}
+strong{display: block;}
+.subheading{text-align: center;background: white;display: inline-block;width: 100%}
+.tablewrap{width: 60%;margin: 0 auto;height: 40px}
+.tablewrap table{width: 100%;height: 100%}
+.tablewrap table tbody tr{height: 40px}
+.tablewrap table tbody tr td{display: table-cell;height:100%;padding: 10 15px;}
+.tablewrap table tbody tr td a{position: relative;height:40px;display: inline-block;}
+.options{line-height: 38px;padding: 0 15px;}
+.border-bottom{background:#8F8CFA;height: 2px;position: absolute;bottom: 0px;width: 100%;left:0;}
+/*body*/
+.body{width: 100%;}
+.mainbody{max-width: 576px;margin: 0 auto;padding:10px 0 10px 0;}
+.level time{margin-bottom: 15px;font-size: 18px;}
+.videos{padding-left: 0;}
+.video{width:100%;}
+.title{display: block}
+.show{float:right;}
+.video-item{margin-bottom: 20px;float:left;display: inline-block;list-style-type: none;padding-right:20px;width: 33%}
+/*loginarea*/
+.hiddenpanel{height:360px;background:white;z-index: 1001;position: fixed;width: 400px;top:200px;left:35%;}
+.hiddenpanel-2{height:500px;background:white;z-index: 1001;position: fixed;width: 400px;top:20%;left:35%;}
+.hiddenpanel-bn{height:200px;background:white;z-index: 1001;position: fixed;width: 400px;top:20%;left:35%}
+.hiddenpanel-lol{height:400px;background:white;z-index: 1001;position: fixed;width: 400px;top:20%;left:35%}
+.login-shadow{z-index: 1000;width: 100%;position: fixed;left:0;top:0;background-color: #796f75;height: 100%;opacity:.7}
+.closepanel{position: absolute;right:20px;top:10px;cursor: pointer;}
+.padding{padding-left: 25px;border-bottom-style: solid;border-bottom-color: #9A9A9A;border-bottom-width: 2px;height: 42px;}
+.header-option{padding-left: 0;text-align: center;}
+.header-option-item{list-style-type: none;float: left;height: 40px;width: 50%}
+.header-option-item a{display: block;padding: 0 10px;line-height: 40px;font-size: 20px;margin-right: 18px;}
+.current{border-bottom: 2px #676EF8 solid;color:#676ef8;}
+.third-party{width: 360px;margin: 20px auto 0}
+.third-icon{display: block;margin-right: 62px;float: left;}
+.weixin{margin-right: 0px;}
+.fa-steam-square{color:black;}
+.fa-facebook-square{color:#3c66c4;}
+.fa-google-plus{color:red;}
+.fa-weixin{color:#3eab36;}
+.or{position: absolute;top:112px;left:190px;font-size: 16px;background: white;}
+.login-item{margin-bottom: 10px;width: 100%;padding-left: 20px;padding-right: 20px;}
+.login-item label{display: block;margin-bottom: 5px;}
+.login-item span{display: block}
+#username,#password,#confirm,#email{width: 70%;border:1px solid #999;line-height:25px }
+.loginbutton,.signupbutton{padding-left: 20px;}
+.newaccount{margin-top: 20px;}
+.signup-item{margin-bottom: 10px;width: 100%;padding-left: 20px;padding-right: 20px;}
+.signup-item label{display: block;margin-bottom: 5px;}
+/*footer*/
+#homepagefooter{bottom:0;background: #C4ECF9;display:inline-block;width:100%;}
+#homepagefooter .footer li{list-style: none;float:left;padding-right:20px;height:30px;display: inline-block;}
+.footer{height:100%;line-height: 30px;}
+.footer p{text-align: center}
+.footerlink{display: inline-block;}
+.footerlinks{max-width: 560px;margin:100px auto auto auto;text-align: center;}

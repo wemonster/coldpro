@@ -1,0 +1,47 @@
+.maincontent{max-width:60%;margin: 0 auto;}
+.clear{clear:both;}
+nav{background-color: #e3f2fd;min-height: 50px;}
+.navbar-toggle .icon-bar{background-color: blue;}
+.video-list-item{list-style-type: none;width: 100%;margin-bottom: 80px;}
+.icon{width:34px;height: 34px;margin-right: 7px;}
+.fa-heart{color:red;}
+.follow{margin-left: 7px;}
+i{padding-right: 3px;}
+.views{padding-left: 0;margin-top: 10px;}
+.view-item{list-style-type: none;float: left;display:inline-block;padding-right:5px;}
+.video{width:100%;}
+.mainvideo{height:100%;}
+.video-player{position: relative;}
+.playbutton{z-index:1;position: absolute;top:calc(50% - 40px);left:calc(50% - 40px);}
+.play{background: none;border:none;}
+.play i{background:none;z-index:1;border: 0;color:white;}
+.opacity{opacity: 0}
+.title{font-size: 20px;}
+.evaluate{width: 100%}
+hr{color:grey;margin-top: 4px;margin-bottom: 10px;}
+.title{padding-top: 10px;}
+.undervideo{background: white}
+.views-item{list-style-type: none;float: left;display:inline-block;padding-right:5px;margin-right: 5px;}
+.commentarea{background: #f1f1f1}
+.comment-count{margin-left: 5px;background: grey;border-radius: 5px;color: white;padding-left: 3px;padding-right: 3px;}
+.showall{text-align: center;}
+.commenticon{width: 50px;height: auto;float: left;}
+.commenticon a img{width: 50px;height:50px;}
+.commentlists{padding-left: 0;}
+.comment-list-item{list-style-type: none;width: 100%;display: inline-block;padding-left: 10px;}
+.comment-content{width: 90%;float: left;margin-left: 5px;position: relative;}
+.comment-content textarea{width:90%;}
+.comment-content button {position: absolute;top:10px;left:93%;}
+.comment-detail{padding-left: 13px}
+.fa-user{color:blue;}
+/*upload video*/
+#upload-video{width: 100%;height: 100%;position: absolute;opacity: 0;top:0;left:0;cursor: pointer}
+.dropzone{position: relative;}
+.info{text-align:center;font-weight: 700}
+#cancel-upload{position:absolute;top:65%;left:45%;}
+/*repost*/
+.login-shadow{z-index: 1000;width: 100%;position: fixed;left:0;top:0;background-color:#999;height: 100%;opacity:.7}
+.hidden-panel{height:200px;background:white;z-index: 1001;position: fixed;width: 400px;top:0;left:0;right:0;bottom:0;margin:auto;}
+.closepanel{position: absolute;right:20px;top:10px;cursor: pointer;}
+.repost-feeling{text-align: center;font-weight:700;padding-top: 50px}
+

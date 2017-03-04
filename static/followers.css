@@ -1,0 +1,9 @@
+.events h4{padding-left: 10px;padding-top: 5px}
+.followers-block ul{padding-left:0;}
+body{background-color: #e1e1e1}
+.followers-block ul li{list-style-type: none;float: left;width: 277px;padding:10px 10px;background: #d6e9f3;margin:5px 5px;border:1px solid #b2c4f5;}
+.followers{position: relative;}
+.status{position: absolute;left: 100px;top:10px;}
+.nickname a{font-weight: 600;color:black;}
+.about_me{word-wrap: break-word;word-break: normal}
+.pagination-area{text-align: center}

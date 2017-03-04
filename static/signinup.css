@@ -1,0 +1,29 @@
+/*loginarea*/
+input:-webkit-autofill{-webkit-box-shadow: 0 0 0px 1000px white inset !important;}
+.hiddenpanel{height:500px;background:white;z-index: 1001;position: fixed;width: 400px;top:0;left:0;right:0;bottom:0;margin:auto;}
+.hiddenpanel-2{height:500px;background:white;z-index: 1001;position: fixed;width: 400px;top:0;left:0;right:0;bottom:0;margin:auto;}
+.login-shadow{z-index: 1000;width: 100%;position: fixed;left:0;top:0;background-color:#999;height: 100%;opacity:.7}
+.closepanel{position: absolute;right:20px;top:10px;cursor: pointer;}
+.padding{padding-left: 25px;border-bottom-style: solid;border-bottom-color: #9A9A9A;border-bottom-width: 2px;height: 42px;}
+.header-option{padding-left: 0;}
+.header-option-item{list-style-type: none;float: left;height: 40px;width: 50%;text-align: center;}
+.header-option-item a{display: block;padding: 0 10px;line-height: 40px;font-size: 20px;margin-right: 18px}
+.current{border-bottom: 2px #676EF8 solid;color:#676ef8;}
+.third-party{width: 360px;margin: 20px auto 0}
+.third-icon{display: block;margin-right: 62px;float: left;}
+.weixin{margin-right: 0px;}
+.fa-steam-square{color:black;}
+.fa-facebook-square{color:#3c66c4;}
+.fa-google-plus{color:red;}
+.fa-weixin{color:#3eab36;}
+.or{position: absolute;top:112px;left:190px;font-size: 16px;background: white;}
+.login-item{margin-bottom: 10px;width: 100%;padding-left: 20px;padding-right: 20px;}
+.login-item label{display: block;margin-bottom: 5px;}
+.login-item span{display: block}
+#log-name,#log-password,#confirm-sign,#email,#sign-name,#sign-password,#nickname{width: 50%;border:1px solid #999;line-height:25px }
+#agree-label{display: inline-block;}
+.loginbutton,.signupbutton{padding-left: 20px;}
+.newaccount{margin-top: 20px;}
+.signup-item{margin-bottom: 10px;width: 100%;padding-left: 20px;padding-right: 20px;}
+.signup-item :first-child{display: inline-block;margin-bottom: 5px;width: 20%}
+label.error{color: red}

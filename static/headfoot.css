@@ -1,0 +1,15 @@
+.user{height:50px;}
+.user > a > img {
+    width: 25px;
+    height: 25px;
+    border-radius: 50%;
+    margin-right: 10px;
+}
+/*footer*/
+#homepagefooter{bottom:0;background: #C4ECF9;display:inline-block;width:100%;}
+#homepagefooter .footer li{list-style: none;float:left;padding-right:20px;height:30px;display: inline-block;}
+.footer{height:100%;line-height: 30px;}
+footer{position: relative;}
+.footer p{text-align: center}
+.footerlink{display: inline-block;}
+.footerlinks{max-width: 560px;margin:100px auto auto auto;text-align: center;}

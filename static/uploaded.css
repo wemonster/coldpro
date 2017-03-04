@@ -1,0 +1,37 @@
+/*header*/
+.clear{clear:both;}
+nav{background-color: #e3f2fd;min-height: 50px;}
+.icon-bar{background-color:blue;}
+.profile{max-width: 960px;margin: 0 auto;}
+.header{display: inline-block;width: 100%;text-align: center;position: relative;}
+.background{width: 100%;height:300px;z-index:-99;position: absolute;}
+.headercontent{position: relative;height: 300px;width: 100%}
+.headerwrap{position: absolute;width: 100%;height: 300px;}
+.icon{position:relative;margin:50px auto 0 auto;width: 100px;height: 100px;}
+.icon a img{width: 100px;height: 100px;}
+.username a{width:auto;height: auto;color:white;font-weight: normal;}
+.username{font-size: 22px;}
+.signiture a{font-size: 16px;color:white;}
+.follow{text-align: center;display: inline-block;padding: 12px 0}
+.follow-table tbody tr td{padding:0 15px}
+.tabledata{border-left-width: 1px;border-left-style: solid;border-color: #BEB2B2;}
+.tabledata a{color:black;}
+.tabledata1 a{color:black;}
+strong{display: block;}
+.subheading{text-align: center;background: white;display: inline-block;width: 100%}
+.tablewrap{width: 60%;margin: 0 auto;height: 40px}
+.tablewrap table{width: 100%;height: 100%}
+.tablewrap table tbody tr{height: 40px}
+.tablewrap table tbody tr td{display: table-cell;height:100%;padding: 10 15px;}
+.tablewrap table tbody tr td a{position: relative;height:40px;display: inline-block;}
+.options{line-height: 38px;padding: 0 15px;}
+.border-bottom{background:#8F8CFA;height: 2px;position: absolute;bottom: 0px;width: 100%;left:0;}
+/*body*/
+.body{width: 100%;}
+.mainbody{max-width: 576px;margin: 0 auto;padding:10px 0 10px 0;}
+.level time{margin-bottom: 15px;font-size: 18px;}
+.videos{padding-left: 0;}
+.video{width:100%;}
+.title{display: block}
+.show{float:right;}
+.video-item{margin-bottom: 20px;float:left;display: inline-block;list-style-type: none;padding-right:20px;width: 33%}
