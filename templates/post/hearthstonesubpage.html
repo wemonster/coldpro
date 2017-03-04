@@ -1,0 +1,73 @@
+{% extends 'subpage.html' %}
+{% block bodypart %}
+    <div class="header">
+        <img src="/static/html/img/hearthstonelogo.jpg" alt="" style="height:200px;width:940px;">
+        <div class="clear"></div>
+    </div>
+    <div class="title">
+        <div>
+            <div class="gametitle">
+                <span><h1>Hearthstone</h1></span>
+            </div>
+            <div class="line">
+                <div class="chooses">
+                    <span>sort by</span>
+                    <select name="sort" id="sort" >
+                        <option value=""></option>
+                        <option value="relevance">relevance</option>
+                        <option value="date">date</option>
+                    </select>
+                </div>
+                <div class="profession">
+                    <ul class="heros">
+                        <li class=""><a href="">Druid</a></li>
+                        <li class=""><a href="">Hunter</a></li>
+                        <li class=""><a href="">Mage</a></li>
+                        <li class=""><a href="">Paladin</a></li>
+                        <li class=""><a href="">Priest</a></li>
+                        <li class=""><a href="">Rogue</a></li>
+                        <li class=""><a href="">Shaman</a></li>
+                        <li class=""><a href="">Warlock</a></li>
+                        <li class=""><a href="">Warrior</a></li>
+                        <div class="clear"></div>
+                    </ul>
+                    <div class="clear"></div>
+                </div>
+            </div>
+        </div>
+        <div class="border">
+            <hr style="border-color:blue">
+        </div>
+        <div class="content-video">
+            <ul class="videos">
+                {%for post in posts%}
+        <li class="video-item">
+            <div class="main-content">
+                <a href="{{url_for('post.get_video',id=post.id)}}">
+                    <video preload="none" loop muted poster="{{post.body}}" class="video" style='height:120px'>
+                        <source src="video\Untitled1.mp4" type="video/mp4">
+                    </video>
+                </a>
+            </div>
+            <div class="content-info">
+                <a href="{{url_for('post.get_video',id=post.id)}}" class="title">{{post.title}}</a>
+                <div class="info">
+                    <a href="{{url_for('admin.outside_page',username=post.author.username) if post.author.username != current_user.username else url_for('admin.user_page',username=current_user.username)}}"><span>{{post.author.nickname}}</span></a>
+                    <div class="show">
+                        <span><b>2</b>views</span>
+                        <span>|</span>
+                        <span><b>2</b>likes</span>
+                    </div>
+                </div>
+            </div>
+        </li>
+        {%endfor%}
+                <div class="clear"></div>
+            </ul>
+        </div>
+    {% endblock %}
+    {% block pagination %}
+        <div class="pagination">
+            {{macros.pagination_widget(pagination,'post.get_hs_subpage')}}
+        </div>
+    {% endblock %}

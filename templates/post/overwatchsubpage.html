@@ -1,0 +1,128 @@
+{% extends 'subpage.html' %}
+{% block bodypart %}
+    <div class="header">
+        <img src="/static/html/img/overwatchlogo.png" alt="" style="height:200px;width:940px;">
+        <div class="clear"></div>
+    </div>
+    <div class="title">
+        <div class="gametitle">
+            <span><h1>Overwatch</h1></span>
+        </div>
+        <div class="choose">
+            <span>sort by</span>
+            <select name="sort" id="sort" >
+                <option value=""></option>
+                <option value="relevance">relevance</option>
+                <option value="date">date</option>
+                <option value="map">maps</option>
+                <option value="championselect">champion</option>
+            </select>
+            <select class='mapselect'>
+                <option value=""></option>
+                <optgroup label='Assault'>
+                    <option value="">Hanamura</option>
+                    <option value="">Temple of Anubis</option>
+                    <option value="">Volskaya Industries</option>
+                </optgroup>
+                <optgroup label="Escort">
+                    <option value="">Dorado</option>
+                    <option value="">Route 66</option>
+                    <option value="">Watchpoint:Gibraltar</option>
+                </optgroup>
+                <optgroup label="Hybrid">
+                    <option value="">Hollywood</option>
+                    <option value="">King's Row</option>
+                    <option value="">Numbani</option>
+                </optgroup>
+                <optgroup label="Control">
+                    <option value="">Illios</option>
+                    <option value="">Lijiang Tower</option>
+                    <option value="">Nepal</option>
+                </optgroup>
+            </select>
+            <select class="championselect">
+                <optgroup label="Offense">
+                    <option value="">Genji</option>
+                    <option value="">McCree</option>
+                    <option value="">Pharah</option>
+                    <option value="">Reaper</option>
+                    <option value="">Soldier:76</option>
+                    <option value="">Tracer</option>
+                </optgroup>
+                <optgroup label="Defense">
+                    <option value="">Bastion</option>
+                    <option value="">Hanzo</option>
+                    <option value="">Junkrat</option>
+                    <option value="">Mei</option>
+                    <option value="">Torbjorn</option>
+                    <option value="">Widowmaker</option>
+                </optgroup>
+                <optgroup label="Tank">
+                    <option value="">D.Va</option>
+                    <option value="">Reinhardt</option>
+                    <option value="">RoadHog</option>
+                    <option value="">Winston</option>
+                    <option value="">Zarya</option>
+                </optgroup>
+                <optgroup label="Support">
+                    <option value="">Ana</option>
+                    <option value="">Lucio</option>
+                    <option value="">Mercy</option>
+                    <option value="">Symmetra</option>
+                    <option value="">Zenyatta</option>
+                </optgroup>
+            </select>
+            <input type="text" placeholder="champion" class="championselect">
+        </div>
+    </div>
+    <script type="text/javascript">
+    $('#sort').change(function(){
+    var map = $('#sort :selected').attr('value')
+    if (map==='map'){
+    $('.mapselect').css('display','inline-block');
+    $('.championselect').css('display','none')
+    }else if (map === 'championselect') {
+    $('.mapselect').css('display','none');
+    $('.championselect').css('display','inline-block')
+    }else{
+    $('.mapselect').css('display','none');
+    $('.championselect').css('display','none');
+    }
+    })
+    </script>
+    <div class="border">
+        <hr style="border-color:blue">
+    </div>
+    <div class="content-video">
+        <ul class="videos">
+            {%for post in posts%}
+        <li class="video-item">
+            <div class="main-content">
+                <a href="{{url_for('post.get_video',id=post.id)}}">
+                    <video preload="auto" loop muted poster="{{post.body}}" class="video" style='height:120px'>
+                        <source src="video\Untitled1.mp4" type="video/mp4">
+                    </video>
+                </a>
+            </div>
+            <div class="content-info">
+                <a href="{{url_for('post.get_video',id=post.id)}}" class="title">{{post.title}}</a>
+                <div class="info">
+                    <a href="{{url_for('admin.outside_page',username=post.author.username) if post.author.username != current_user.username else url_for('admin.user_page',username=current_user.username)}}"><span>{{post.author.nickname}}</span></a>
+                    <div class="show">
+                        <span><b>2</b>views</span>
+                        <span>|</span>
+                        <span><b>2</b>likes</span>
+                    </div>
+                </div>
+            </div>
+        </li>
+        {%endfor%}
+            <div class="clear"></div>
+        </ul>
+    </div>
+{% endblock %}
+{% block pagination %}
+    <div class="pagination">
+        {{macros.pagination_widget(pagination,'post.get_ow_subpage')}}
+    </div>
+{% endblock %}

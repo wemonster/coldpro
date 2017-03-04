@@ -1,0 +1,186 @@
+{% extends 'subpage.html' %}
+{% block bodypart %}
+    <div class="header">
+        <img src="/static/html/img/dota2logo.jpg" alt="" style="height:200px;width:940px;">
+        <div class="clear"></div>
+    </div>
+    <div class="title">
+        <div class="gametitle">
+            <span><h1>Dota2</h1></span>
+        </div>
+        <div class="choose">
+            <span>sort by</span>
+            <select name="sort" id="sort" >
+                <option value=""></option>
+                <option value="relevance">relevance</option>
+                <option value="date">date</option>
+                <option value="heroes">heroes</option>
+            </select>
+            <select class="championselect">
+                <optgroup label="Strength">
+                    <option value="">Earthshaker</option>
+                    <option value="">Sven</option>
+                    <option value="">Tiny</option>
+                    <option value="">Kunkka</option>
+                    <option value="">Beastmaster</option>
+                    <option value="">Dragon Knight</option>
+                    <option value="">Clockwerk</option>
+                    <option value="">Omniknight</option>
+                    <option value="">Huskar</option>
+                    <option value="">Alchemist</option>
+                    <option value="">Brewmaster</option>
+                    <option value="">Treant Protector</option>
+                    <option value="">Io</option>
+                    <option value="">Centaur Warrunner</option>
+                    <option value="">Timbersaw</option>
+                    <option value="">Bristleback</option>
+                    <option value="">Tusk</option>
+                    <option value="">Elder Titan</option>
+                    <option value="">Legion Commander</option>
+                    <option value="">Earth Spirit</option>
+                    <option value="">Phoenix</option>
+                    <option value="">Axe</option>
+                    <option value="">Pudge</option>
+                    <option value="">Sand King</option>
+                    <option value="">Slardar</option>
+                    <option value="">Tidehunter</option>
+                    <option value="">Wraith King</option>
+                    <option value="">Lifestealer</option>
+                    <option value="">Night Stalker</option>
+                    <option value="">Doom</option>
+                    <option value="">Spirit Breaker</option>
+                    <option value="">Lycan</option>
+                    <option value="">Chaos Knight</option>
+                    <option value="">Undying</option>
+                    <option value="">Magnus</option>
+                    <option value="">Abaddon</option>
+                </optgroup>
+                <optgroup label="Agility">
+                    <option value="">Anti-Merge</option>
+                    <option value="">Drow Ranger</option>
+                    <option value="">Juggernaut</option>
+                    <option value="">Mirana</option>
+                    <option value="">Morphling</option>
+                    <option value="">Phantom Lancer</option>
+                    <option value="">Vengeful Spirit</option>
+                    <option value="">Riki</option>
+                    <option value="">Sniper</option>
+                    <option value="">Templar Assassin</option>
+                    <option value="">Luna</option>
+                    <option value="">Bounty Hunter</option>
+                    <option value="">Ursa</option>
+                    <option value="">Gyrocopter</option>
+                    <option value="">Lone Druid</option>
+                    <option value="">Naga Siren</option>
+                    <option value="">Troll Warlord</option>
+                    <option value="">Ember Spirit</option>
+                    <option value="">Blookseeker</option>
+                    <option value="">Shadow Fiend</option>
+                    <option value="">Razor</option>
+                    <option value="">Venomancer</option>
+                    <option value="">Faceless Void</option>
+                    <option value="">Phantom Assassin</option>
+                    <option value="">Viper</option>
+                    <option value="">Clinkz</option>
+                    <option value="">Broodmother</option>
+                    <option value="">Weaver</option>
+                    <option value="">Spectre</option>
+                    <option value="">Meepo</option>
+                    <option value="">Nyx Assassin</option>
+                    <option value="">Slark</option>
+                    <option value="">Medusa</option>
+                    <option value="">Terroblade</option>
+                    <option value="">Arc Warden</option>
+                </optgroup>
+                <optgroup label="Intelligence">
+                    <option value="">Crystal Maiden</option>
+                    <option value="">Puck</option>
+                    <option value="">Storm Spirit</option>
+                    <option value="">Windranger</option>
+                    <option value="">Zeus</option>
+                    <option value="">Lina</option>
+                    <option value="">Shadow Shaman</option>
+                    <option value="">Tinker</option>
+                    <option value="">Nature's Prophet</option>
+                    <option value="">Enchantress</option>
+                    <option value="">Jakiro</option>
+                    <option value="">Chen</option>
+                    <option value="">Sliencer</option>
+                    <option value="">Ogre Magi</option>
+                    <option value="">Rubick</option>
+                    <option value="">Disruptor</option>
+                    <option value="">Keeper of the Light</option>
+                    <option value="">Skywrath Mage</option>
+                    <option value="">Oracle</option>
+                    <option value="">Techies</option>
+                    <option value="">Bane</option>
+                    <option value="">Lich</option>
+                    <option value="">Lion</option>
+                    <option value="">Witch Doctor</option>
+                    <option value="">Enigma</option>
+                    <option value="">Necrophos</option>
+                    <option value="">Warlock</option>
+                    <option value="">Queen of Pain</option>
+                    <option value="">Death Prophet</option>
+                    <option value="">Pugna</option>
+                    <option value="">Dazzle</option>
+                    <option value="">Leshrac</option>
+                    <option value="">Dark Seer</option>
+                    <option value="">Batrider</option>
+                    <option value="">Ancient Apparition</option>
+                    <option value="">Invoker</option>
+                    <option value="">Outworld Devourer</option>
+                    <option value="">Shadow Demon</option>
+                    <option value="">Visage</option>
+                    <option value="">Winter Wyvem</option>
+                </optgroup>
+            </select>
+            <input type="text" placeholder="champion" class="championselect">
+        </div>
+    </div>
+    <script type="text/javascript">
+    $('#sort').change(function(){
+    var hero = $('#sort :selected').attr('value')
+    if (hero==='heroes'){
+    $('.championselect').css('display','inline-block')
+    }else{
+    $('.championselect').css('display','none');
+    }
+    })
+    </script>
+    <div class="border">
+        <hr style="border-color:blue">
+    </div>
+    <div class="content-video">
+        <ul class="videos">
+            {%for post in posts%}
+            <li class="video-item">
+                <div class="main-content">
+                    <a href="{{url_for('post.get_video',id=post.id)}}">
+                        <video preload="none" loop muted poster="{{post.body}}" class="video" style="height:120px">
+                            <source src="video\Untitled1.mp4" type="video/mp4">
+                        </video>
+                    </a>
+                </div>
+                <div class="content-info">
+                    <a href="{{url_for('post.get_video',id=post.id)}}" class="title">{{post.title}}</a>
+                    <div class="info">
+                        <a href="{{url_for('admin.outside_page',username=post.author.username) if post.author.username != current_user.username else url_for('admin.user_page',username=current_user.username)}}" class="title">{{post.author.nickname}}</a>
+                        <div class="show">
+                            <span><b>2</b>views</span>
+                            <span>|</span>
+                            <span><b>2</b>likes</span>
+                        </div>
+                    </div>
+                </div>
+            </li>
+            {%endfor%}
+            <div class="clear"></div>
+        </ul>
+    </div>
+{% endblock %}
+{% block pagination %}
+    <div class="pagination">
+        {{macros.pagination_widget(pagination,'post.get_dota2_subpage')}}
+    </div>
+{% endblock %}

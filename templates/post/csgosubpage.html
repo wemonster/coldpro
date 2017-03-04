@@ -1,0 +1,114 @@
+{% extends 'subpage.html' %}
+{% block bodypart %}
+    <div class="header">
+                    <img src="/static/html/img/csgopage1.jpg" alt="" style="height:200px;width:940px;">
+                    <div class="clear"></div>
+                </div>
+                <div class="title">
+                    <div class="gametitle">
+                        <span><h1>Counter-Strike: Global Offensive</h1></span>
+                    </div>
+                    <div class="choose">
+                        <span>sort by</span>
+                        <select name="sort" id="sort" >
+                            <option value=""></option>
+                            <option value="relevance">relevance</option>
+                            <option value="date">date</option>
+                            <option value="map">maps</option>
+                            <option value="highlight">highlight</option>
+                        </select>
+                        <select class='mapselect'>
+                            <option value=""></option>
+                        <optgroup label='Bomb&nbsp;Defusal'></optgroup>
+                        <option value="">Aztec</option>
+                        <option value="">Dust</option>
+                        <option value="">Dust2</option>
+                        <option value="">Cache</option>
+                        <option value="">Cobblestone</option>
+                        <option value="">Inferno</option>
+                        <option value="">Mirage</option>
+                        <option value="">Nuke</option>
+                        <option value="">Overpass</option>
+                        <option value="">Train</option>
+                        <option value="">Vertigo</option>
+                    <optgroup label="Hostage Rescue"></optgroup>
+                    <option value="">Assault</option>
+                    <option value="">Italy</option>
+                    <option value="">Millitia</option>
+                    <option value="">Office</option>
+                <optgroup lebel=''></optgroup>
+            </select>
+            <select class="highlight">
+                <option value=""></option>
+            <optgroup label="weapon"></optgroup>
+            <option>Awp</option>
+            <option>Ak47</option>
+            <option>M4a1-s</option>
+            <option>M4a4</option>
+            <option>pistols</option>
+            <option>Heavy</option>
+            <option value="">other</option>
+        <optgroup label="highlight"></optgroup>
+        <option value="">clutch</option>
+        <option value="">headshot</option>
+        <option value="">noscope</option>
+        <option value="">rekt</option>
+        <option value="">ninja-defuse</option>
+        <option value="">eco</option>
+        <option value="">eco</option>
+    </select>
+    <input type="text" placeholder="champion" class="championselect">
+</div>
+</div>
+<script type="text/javascript">
+$('#sort').change(function(){
+var map = $('#sort :selected').attr('value')
+if (map==='map'){
+$('.mapselect').css('display','inline-block');
+$('.highlight').css('display','none')
+}else if (map === 'highlight') {
+$('.mapselect').css('display','none');
+$('.highlight').css('display','inline-block');
+}else{
+$('.mapselect').css('display','none');
+$('.highlight').css('display','none');
+}
+})
+</script>
+<div class="border">
+    <hr style="border-color:blue">
+</div>
+<div class="content-video">
+    <ul class="videos clear">
+        {%for post in posts%}
+        <li class="video-item">
+            <div class="main-content">
+                <a href="{{url_for('post.get_video',id=post.id)}}">
+                    <video preload="none" loop muted poster="{{post.body}}" class="video" style='height:120px'>
+                        <source src="video\Untitled1.mp4" type="video/mp4">
+                    </video>
+                </a>
+            </div>
+            <div class="content-info">
+                <a href="{{url_for('post.get_video',id=post.id)}}" class="title">{{post.title}}</a>
+                <div class="info">
+                    <a href="{{url_for('admin.outside_page',username=post.author.username) if post.author.username != current_user.username else url_for('admin.user_page',username=current_user.username)}}"><span>{{post.author.nickname}}</span></a>
+                    <div class="show">
+                        <span><b>2</b>views</span>
+                        <span>|</span>
+                        <span><b>2</b>likes</span>
+                    </div>
+                </div>
+            </div>
+        </li>
+        {%endfor%}
+        <div class="clear"></div>
+    </ul>
+    <div class="clear"></div>
+</div>
+{% endblock %}
+{% block pagination %}
+    <div class="pagination">
+    {{macros.pagination_widget(pagination,'post.get_csgo_subpage')}}
+</div>
+{% endblock %}
