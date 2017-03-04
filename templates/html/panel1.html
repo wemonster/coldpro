@@ -1,0 +1,71 @@
+<div class="hiddenpanel">
+    <div class="closepanel"> &#10006</div>
+    <div class="padding">
+        <ul class="header-option">
+            <li class="header-option-item panel-login"><a href="#" class="current">Log In</a></li>
+            <li class="header-option-item panel-signup"><a href="#">Sign Up</a></li>
+            <div class="clear"></div>
+        </ul>
+    </div>
+    <form action="/admin/submit-login/" method='POST' enctype="multipart/form-data" id='login-form' onsubmit="return Validate()" >
+        <div class="under-login">
+            <div class="third-party">
+                <a href="" class="third-icon"><i class="fa fa-steam-square fa-3x"></i></a>
+                <a href="" class="third-icon" onclick="checkLoginState();"><i class="fa fa-facebook-square fa-3x"></i></a>
+                <a href="" class="third-icon"><i class="fa fa-google-plus fa-3x"></i></a>
+                <a href="" class="weixin"><i class="fa fa-weixin fa-3x"></i></a>
+                <hr>
+                <div class="or">or</div>
+                <div class="clear"></div>
+            </div>
+        <div class="alert alert-block alert-success fade in hidden">
+            <strong>OK!</strong> Username or password is correct.
+        </div>
+        <div class="alert alert-block alert-danger fade in hidden ">
+            <strong>Invalid</strong> Username or password is incorrect.
+        </div>
+        <div class="ownaccount">
+            <div class="account">
+                <div class="login-item">
+                    {{form.username.label}}
+                    {{form.username(id='log-name', autofocus=True,style='width:70%',class='form-control')}}
+                    <span><a href="">forget username?</a></span>
+                </div>
+                <div class="login-item">
+                    {{form.password.label}}
+                    {{form.password(id='log-password',style='width:70%',class='form-control')}}
+                    <span><a href="">forget password?</a></span>
+                </div>
+            </div>
+        </div>
+        <div class="loginbutton">
+            <button class="btn btn-info" name='log-submit' id='log-submit'>Log In</button>
+        </div>
+    </div>
+</form>
+</div>
+<script src='/static/html/js/signinup.js'></script>
+<script>
+    function Validate(){
+        $.ajax({
+            url: '/admin/validate/',
+            type: 'POST',
+            data: {'username':$('#log-name').val(),'password':$('#log-password').val()},
+            async:false,
+            success:function(data){
+                if (data.msg == false){
+                    $('.alert-danger').removeClass('hidden')
+                    $('.alert-success').addClass('hidden')
+                    // return false
+                }else{
+                    $('.alert-danger').addClass('hidden')
+                    $('.alert-success').removeClass('hidden')
+                    // return true
+                }
+            }
+        });
+        if ($('.alert-success').hasClass('hidden')){
+            return false
+        } 
+    }
+</script>

@@ -1,0 +1,66 @@
+<script src="/static/html/js/form-validate.js"></script>
+<script src='/static/html/js/signinup.js'></script>
+<div class="hiddenpanel-2">
+    <div class="closepanel">&#10006</div>
+    <div class="padding">
+        <ul class="header-option">
+            <li class="header-option-item panel-login"><a href="#">Log In</a></li>
+            <li class="header-option-item panel-signup"><a href="#" class="current">Sign Up</a></li>
+            <div class="clear"></div>
+        </ul>
+    </div>
+    <form action="/admin/submit-signup/" method='POST' enctype="multipart/form-data" id='regForm'>
+        <div class="third-party">
+            <a href="" class="third-icon"><i class="fa fa-steam-square fa-3x"></i></a>
+            <a href="" class="third-icon"><i class="fa fa-facebook-square fa-3x"></i></a>
+            <a href="" class="third-icon"><i class="fa fa-google-plus fa-3x"></i></a>
+            <a href="" class="weixin"><i class="fa fa-weixin fa-3x"></i></a>
+            <hr>
+            <div class="or">or</div>
+            <div class="clear"></div>
+        </div>
+        <div class="alert alert-block alert-success fade in hidden">
+            <strong>OK!</strong>You have registered your account.
+        </div>
+        <div class="under-signup">
+            <div class="newaccount">
+                <div class="account">
+                    <div class="signup-item">
+                        {{form.username.label}}
+                        {{form.username(id='sign-name',autofocus=True,class='')}}
+                        <label id='msg'></label>
+                    </div>
+                    <div class="signup-item">
+                        {{form.password.label}}
+                        {{ form.password(id='sign-password',class='')}}
+                    </div>
+                    <div class="signup-item">
+                        {{form.repeat.label}}
+                        {{form.repeat(id='confirm-sign',class='')}}
+                    </div>
+                    <div class="signup-item">
+                        {{form.email.label}}
+                        {{form.email(id='email',class='')}}
+                    </div>
+                    <div class="signup-item">
+                        {{form.nickname.label}}
+                        {{form.nickname(id='nickname',class='')}}
+                        <label id='nick'></label>
+                    </div>
+                    <div class="signup-item agree">   
+                        {{form.agree.label(id='agree-label')}}
+                        {{form.agree}}<a href=""> Terms of Service and Privacy Policy</a>
+                    </div>
+                    <div class="signupbutton">
+                        <button class="btn btn-info" name='sign-submit' id='sign-submit'>Sign Up</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
+<script>
+    // function showmessage(){
+    //     $('#alert-success').removeClass('hidden')
+    // }
+</script>
