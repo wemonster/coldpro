@@ -1,0 +1,487 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+	<meta charset="UTF-8">
+	<meta name='viewport' content="width=device-width,initial-scale=1">
+	<title>History-Coldpro</title>
+    <meta name='author' content="Peter Yang">
+    <meta name="keywords" content="online game highlights record and share">
+    <meta name='description' content="ColdPro is a place for you to record and share your gameplays and hightlights in gaming. It is free for all players and you can record and upload easily. You  you can enjoy other's plays or get appreciate for your own plays. Having fun here! Every can be their own pro~">
+    <link rel="shortcut icon" href="#" type='image/x-icon'>
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <script src='http://ajax.aspnetcdn.com/ajax/jQuery/jquery-2.2.4.min.js'></script>
+    <link rel="stylesheet" href="/static/html/css/bootstrap.min.css">
+    <script src="/static/html/js/bootstrap.min.js"></script>
+    <link href="/static/html/css/font-awesome.min.css" rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" type="text/css" href="/static/html/css/profile.css">
+    <link rel="stylesheet" href="/static/html/css/headfoot.css">
+    <link rel="stylesheet" href="/static/html/css/style.css">
+</head>
+<body style="background-color: #E1E1E1">
+    <nav class="navbar navbar-light navbar-fixed top">
+        <div class="container">
+            <div class="navbar-header">
+                <button data-target='#navbarCollapse' data-toggle='collapse' class="navbar-toggle">
+                    <span class="sr-only">切换导航</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a href="{{url_for('admin.index')}}" class="navbar-brand">Coldpro</a>
+            </div>
+            <div class="collapse navbar-collapse" id='navbarCollapse'>
+                <ul class="nav navbar-nav">
+                    <li class="#active"><a href="{{url_for('admin.user_page',username=current_user.username)}}"><i class="fa fa-home"></i>Home</a></li>
+                    <li><a href="#" data-toggle='dropdown'><i class="fa fa-play-circle"></i>featured<b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="{{url_for('post.get_csgo_subpage')}}">Csgo</a></li>
+                            <li><a href="{{url_for('post.get_ow_subpage')}}">Overwatch</a></li>
+                            <li><a href="{{url_for('post.get_lol_subpage')}}">League of Legends</a></li>
+                            <li><a href="{{url_for('post.get_dota2_subpage')}}">Dota2</a></li>
+                            <li><a href="{{url_for('post.get_hs_subpage')}}">Hearthstone</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="videos.html"><i class="fa fa-star"></i>tops</a></li>
+                </ul>
+                <form action="#" class="navbar-form navbar-left">
+                    <input type="text" placeholder="search" class='form-control'>
+                    <button type="submit" class="btn btn-info">
+                        <i class="fa fa-search"></i>
+                    </button>
+                </form>
+                <ul class="nav navbar-nav navbar-right" id='logindetail'>
+                    <li><a href="{{url_for('post.uploads')}}"><i class="fa fa-cloud-upload"></i>upload</a></li>
+                    {% if current_user.is_authenticated %}
+                        <li class="user">
+                            <a href="javascript:;" data-toggle="dropdown" style="padding-bottom:10px;">
+                                <img src="{{current_user.gravatar(size=100)}}" alt="">
+                                {% if current_user.nickname %}
+                                    {{current_user.nickname}}
+                                {% else %}
+                                    {{current_user.username}}
+                                {% endif %}
+                                <span class=" fa fa-angle-down"></span>
+                            </a>
+                            <ul class="dropdown-menu dropdown-usermenu purple pull-right">
+                                <li><a href="{{url_for('admin.user_page',username=current_user.username)}}"> Profile</a></li>
+                                <li>
+                                    <a href="javascript:;">
+                                        <span class="badge bg-danger pull-right">40%</span>
+                                        <span>Settings</span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="javascript:;">
+                                        <span class="label bg-info pull-right">new</span>
+                                        Help
+                                    </a>
+                                </li>
+                                <li><a href="{{url_for('admin.logout')}}"><i class="fa fa-sign-out pull-right"></i> 退出登录</a></li>
+                            </ul>
+                        </li>
+                    {% endif %}
+                    <!-- <li id='login'><a href="#"><i class="fa fa-user"></i>login</a></li>
+                    <li id='signup'><a href="#"><i class="fa fa-sign-in"></i>sign up</a></li> -->
+                    <li class="dropdown">
+                        <a href="#" data-toggle='dropdown'><i class="fa fa-language"></i>language<b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="#">english</a></li>
+                            <li><a href="#">简体中文</a></li>
+                            <li><a href="#">繁體中文</a></li>
+                            <li><a href="#">日本語</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+            
+        </div>
+    </nav>
+    <div class="main-content">
+        <div class="profile">
+            <div class="header">
+                <div class="headercontent">
+                    <div class="headerwrap">
+                        <div class="background" style="background-image:url('/static/html/img/profile-background.png')">
+                        </div>
+                        <div class="iconarea">
+                            <div class="icon">
+                                <a href="{{url_for('admin.edit_profile')}}"><img src="{{current_user.gravatar(size=100)}}" alt="" class="img-circle" title='点击修改个人资料'></a>
+                            </div>
+                            <div class="username">
+                                <a href="{{url_for('admin.edit_profile')}}" title='点击修改个人资料'>{{current_user.nickname}}</a>
+                            </div>
+                            <div class="signiture">
+                                <a href="{{url_for('admin.edit_profile')}}" title='点击修改个人资料'>{{current_user.about_me}}</a>
+                            </div>
+                            <div class="follow">
+                                <table class="follow-table">
+                                    <tbody>
+                                        <tr>
+                                            <td class="tabledata1">
+                                                <a href="">
+                                                    <strong>Followers</strong>
+                                                    <span>{{current_user.followers.count()}}</span>    
+                                                </a>
+                                            </td>
+                                            <td class="tabledata">
+                                                <a href="">
+                                                    <strong>Followed</strong>
+                                                    <span>{{current_user.followed.count()}}</span>    
+                                                </a>
+                                            </td>
+                                            <td class="tabledata">
+                                                <a href="#">
+                                                    <strong>Appreciation</strong>
+                                                    <span>40</span>    
+                                                </a>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>                    
+                    </div>
+                </div>
+                <div class="subheading">
+                    <div class="tablewrap">
+                        <table>
+                            <tbody>
+                                <tr>
+                                    <td>
+                                        <a href="{{url_for('admin.user_page',username=current_user.username)}}">
+                                            <span class="options">Home</span>
+                                        </a>
+                                    </td>
+                                    <td>
+                                        <a href="{{url_for('admin.user_games')}}">
+                                            <span class="options">Games</span>
+                                            
+                                        </a>
+                                    </td>
+                                    <td>
+                                        <a href="{{url_for('admin.user_upload')}}">
+                                            <span class="options">Uploaded</span>
+
+                                        </a>
+                                    </td>
+                                    <td>
+                                        <a href="{{url_for('admin.favourite')}}">
+                                            <span class="options">favourite</span>
+                                        </a>
+                                    </td>
+                                    <td class="table-current">
+                                        <a href="{{url_for('admin.user_history')}}">
+                                            <span class="options">history</span> 
+                                           <span class="border-bottom"></span>
+                                        </a>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>   
+            <div class="body">
+                <div class="mainbody">
+                    <div class="body-content">
+                        <div>
+                            <h3>History</h3>
+                        </div>
+                        <div class="level level-1">
+                            <time>22/09/1009</time>
+                            <ul class="videos">
+                                <li class="video-item">
+                                    <div class="main-content">
+                                        <a href="">
+                                            <video preload="none" loop muted  poster='img\logo.jpg' class="video">
+                                                <source src="video\Untitled1.mp4" type="video/mp4">
+                                            </video>
+                                        </a>
+                                    </div>
+                                    <div class="content-info">
+                                        <a href="#" class="title">title</a>
+                                        <div class="info">
+                                            <a href=""><span>author</span></a>
+                                            <div class="show">
+                                                <span><b>2</b>views</span>
+                                                <span>|</span>
+                                                <span><b>2</b>likes</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li class="video-item">
+                                    <div class="main-content">
+                                        <a href="">
+                                            <video preload="none" loop muted poster="img\logo.jpg" class="video">
+                                                <source src="video\Untitled1.mp4" type="video/mp4">
+                                            </video>
+                                        </a>
+                                    </div>
+                                    <div class="content-info">
+                                        <a href="#" class="title">title</a>
+                                        <div class="info">
+                                            <a href=""><span>author</span></a>
+                                            <div class="show">
+                                                <span><b>2</b>views</span>
+                                                <span>|</span>
+                                                <span><b>2</b>likes</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </li>
+                                <div class="clear"></div>
+                            </ul>
+                            <div class="clear"></div>    
+                        </div>
+                        <div class="level level-2">
+                            <time>22/09/1997</time>
+                            <ul class="videos">
+                                <li class="video-item">
+                                    <div class="main-content">
+                                        <a href="">
+                                            <video preload="none" loop muted poster="img\logo.jpg" class="video">
+                                                <source src="video\Untitled1.mp4" type="video/mp4">
+                                            </video>
+                                        </a>
+                                    </div>
+                                    <div class="content-info">
+                                        <a href="#" class="title">title</a>
+                                        <div class="info">
+                                            <a href=""><span>author</span></a>
+                                            <div class="show">
+                                                <span><b>2</b>views</span>
+                                                <span>|</span>
+                                                <span><b>2</b>likes</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li class="video-item">
+                                    <div class="main-content">
+                                        <a href="">
+                                            <video preload="none" loop muted poster="img\logo.jpg" class="video">
+                                                <source src="video\Untitled1.mp4" type="video/mp4">
+                                            </video>
+                                        </a>
+                                    </div>
+                                    <div class="content-info">
+                                        <a href="#" class="title">title</a>
+                                        <div class="info">
+                                            <a href=""><span>author</span></a>
+                                            <div class="show">
+                                                <span><b>2</b>views</span>
+                                                <span>|</span>
+                                                <span><b>2</b>likes</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li class="video-item">
+                                    <div class="main-content">
+                                        <a href="">
+                                            <video preload="none" loop muted poster="img\logo.jpg" class="video">
+                                                <source src="video\Untitled1.mp4" type="video/mp4">
+                                            </video>
+                                        </a>
+                                    </div>
+                                    <div class="content-info">
+                                        <a href="#" class="title">title</a>
+                                        <div class="info">
+                                            <a href=""><span>author</span></a>
+                                            <div class="show">
+                                                <span><b>2</b>views</span>
+                                                <span>|</span>
+                                                <span><b>2</b>likes</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li class="video-item">
+                                    <div class="main-content">
+                                        <a href="">
+                                            <video preload="none" loop muted poster="img\logo.jpg" class="video">
+                                                <source src="video\Untitled1.mp4" type="video/mp4">
+                                            </video>
+                                        </a>
+                                    </div>
+                                    <div class="content-info">
+                                        <a href="#" class="title">title</a>
+                                        <div class="info">
+                                            <a href=""><span>author</span></a>
+                                            <div class="show">
+                                                <span><b>2</b>views</span>
+                                                <span>|</span>
+                                                <span><b>2</b>likes</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </li>
+                                <div class="clear"></div>
+                            </ul>
+                            <div class="clear"></div>    
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script  type="text/javascript">
+        $('.play').each(function(){
+            $(this).on('click',function(){
+                $(this).toggleClass('opacity')
+                var video = $(this).parent().prev('.mainvideo').children('.video');
+                if(video[0].paused){
+                    video[0].play();
+                }else{
+                    video[0].pause();
+                } 
+            })
+        })
+    </script>
+    <div class="hiddenpanel hide">
+        <div class="closepanel">&#10006</div>
+            <div class="padding">
+                <ul class="header-option">
+                    <li class="header-option-item panel-login"><a href="#">Log In</a></li>
+                    <li class="header-option-item panel-signup"><a href="#">Sign Up</a></li>
+                    <div class="clear"></div>
+                </ul>
+            </div>
+            <div class="under-login hide">
+                <div class="third-party">
+                    <a href="" class="third-icon"><i class="fa fa-steam-square fa-3x"></i></a>
+                    <a href="" class="third-icon"><i class="fa fa-facebook-square fa-3x"></i></a>
+                    <a href="" class="third-icon"><i class="fa fa-google-plus fa-3x"></i></a>
+                    <a href="" class="weixin"><i class="fa fa-weixin fa-3x"></i></a>
+                    <hr>
+                    <div class="or">or</div>
+                    <div class="clear"></div>
+                </div>
+                <div class="ownaccount">
+                    <div class="account">
+                        <div class="login-item">
+                            <label for="">Username</label>
+                            <input type="text" id='username' autofocus>
+                            <span><a href="">forget username?</a></span>
+                        </div>
+                        <div class="login-item">
+                            <label for="">Password</label>
+                            <input type="text" id='password'>
+                            <span><a href="">forget password?</a></span>
+                        </div>
+                    </div>
+                </div>
+                <div class="loginbutton">
+                    <button class="btn btn-info">Log In</button>
+                </div>
+            </div>            
+    </div>
+    <div class="hiddenpanel-2 hide">
+        <div class="closepanel">&#10006</div>
+        <div class="padding">
+            <ul class="header-option">
+                <li class="header-option-item panel-login"><a href="#">Log In</a></li>
+                <li class="header-option-item panel-signup"><a href="#" class="current">Sign Up</a></li>
+                <div class="clear"></div>
+            </ul>
+        </div>
+        <div class="third-party">
+            <a href="" class="third-icon"><i class="fa fa-steam-square fa-3x"></i></a>
+            <a href="" class="third-icon"><i class="fa fa-facebook-square fa-3x"></i></a>
+            <a href="" class="third-icon"><i class="fa fa-google-plus fa-3x"></i></a>
+            <a href="" class="weixin"><i class="fa fa-weixin fa-3x"></i></a>
+            <hr>
+            <div class="or">or</div>
+            <div class="clear"></div>
+        </div>
+        <div class="under-signup hide">
+            <div class="newaccount">
+                <div class="account">
+                    <div class="signup-item">
+                        <label for="">Username</label>
+                        <input type="text" id='username' autofocus>
+                    </div>
+                    <div class="signup-item">
+                        <label for="">Password</label>
+                        <input type="text" id='password'>
+                    </div>
+                    <div class="signup-item">
+                        <label for="">Confirm Password</label>
+                        <input type="text" id='confirm'>
+                    </div>
+                    <div class="signup-item">
+                        <label for="">Email</label>
+                        <input type="text" id='email'>
+                    </div>
+                    <div class="signup-item">
+                        <input type="checkbox">
+                        <label for="">Agree<a href="">Terms of Service and Privacy Policy</a></label>
+                    </div>
+                    <div class="signupbutton">
+                        <button class="btn btn-info">Sign Up</button>
+                    </div>
+                </div>
+            </div> 
+        </div>     
+    </div>
+    <div class="login-shadow hide"></div>
+    <script type="text/javascript">
+        $('.closepanel').on('click',function(){
+            $(this).parent().addClass('hide');
+            $('.login-shadow').addClass('hide')
+        })
+        $('#login').on('click',function(){
+            $('.login-shadow').removeClass('hide')
+            $('.hiddenpanel').removeClass('hide')
+            $('.under-login').removeClass('hide')
+            $('.hiddenpanel-2').addClass('hide')
+        })
+        $('#signup').on('click',function(){
+            $('.login-shadow').removeClass('hide')
+            $('.hiddenpanel-2').removeClass('hide');
+            $('.hiddenpanel').addClass('hide')
+            $('.under-signup').removeClass('hide')
+        })
+        $('.panel-login').on('click',function(){
+            $('.hiddenpanel').removeClass('hide')
+            $('.under-login').removeClass('hide')
+            $('.hiddenpanel-2').addClass('hide')
+            $('.under-signup').addClass('hide')
+        })
+        $('.panel-signup').on('click',function(){
+            $('.hiddenpanel').addClass('hide')
+            $('.under-login').addClass('hide')
+            $('.hiddenpanel-2').removeClass('hide')
+            $('.under-signup').removeClass('hide')
+        })
+    </script>
+    <script type="text/javascript">
+        $(function(){
+            $('.video').on('mouseenter',function(){
+                if(this.paused) this.play();
+            }).on('mouseleave',function(){
+                if(this.play()) this.pause();
+            })
+        })
+    </script>
+    <footer id='homepagefooter'>
+            <div class="footer">
+                <div class="footerlinks">
+                    <ul class="footerlink">
+                        <li><a href="about-us.html">about</a></li>
+                        <li><a href="daily-blog.html">Blog</a></li>
+                        <li><a href="contact-us.html">Contact us</a></li>
+                        <li><a href="cooperation.html">Cooperation</a></li>
+                        <li><a href="developers.html">developers</a></li>
+                        <li><a href="FAQ.html">FAQ</a></li>
+                        <div class="clear"></div>
+                    </ul>
+                    <div class="clear"></div>
+                </div>        
+                <p ><i class="fa fa-copyright">2016 www.coldpro.tv</i></p>
+            </div>
+    </footer>
+</body>
+</html>

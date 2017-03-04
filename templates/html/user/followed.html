@@ -1,0 +1,78 @@
+{% extends 'user-subpage.html' %}
+{%import '_macros.html' as macros %}
+{%block subheading%}
+<link rel="stylesheet" href="/static/html/css/followers.css">
+<div class="subheading">
+    <div class="tablewrap">
+        <table>
+            <tbody>
+                <tr>
+                    <td class="table-current">
+                        <a href="{{url_for('admin.user_page',username=user.username)}}">
+                            <span class="options">Home</span>
+                        </a>
+                    </td>
+                    <td>
+                        <a href="{{url_for('admin.user_games')}}">
+                            <span class="options">Games</span>
+                        </a>
+                    </td>
+                    <td>
+                        <a href="{{url_for('admin.user_upload')}}">
+                            <span class="options">Uploaded</span>
+                        </a>
+                    </td>
+                    <td>
+                        <a href="{{url_for('admin.favourite')}}">
+                            <span class="options">favourite</span>
+                        </a>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+{%endblock%}
+{% block bodypart %}
+    <div class="body">
+        <div class="mainbody">
+            <div class="events">
+                <h4>My Followers</h4>
+                <div class="followers-block">
+                    <ul>
+                        {% for item in pagination.items %}
+                            <li>
+                                <div class="followers">
+                                    <div class="upside">
+                                        <img src="{{item.followed.gravatar(size=100)}}" alt="" style="height:50px;width: 50px">
+                                    </div>
+                                    <div class="status">
+                                        <a class="followbutton btn btn-success" href="{{url_for('admin.outside_page',username=user.username)}}">
+                                            <b class="fa fa-check"></b>&nbsp;<span class='followed'>Followed</span></a>
+                                        </div>
+                                        <div class="downside">
+                                            <div class="nickname">
+                                                <a href="{{url_for('admin.outside_page',username=item.followed.username)}}">{{item.followed.nickname}}</a>
+                                            </div>
+                                            <div class="about_me">
+                                                {{item.followed.about_me}}
+                                            </div>
+                                        </div>
+                                    </div>
+                                </li>
+                            {% endfor %}
+                            <div class="clear"></div>
+                    </ul>
+                    </div>
+                    
+                </div>
+            </div>
+        </div>
+        
+{% endblock %}{% block pagination %}
+                        <div class="pagination-area">
+                            <div class="pagination">
+                                {{macros.pagination_widget(pagination,'admin.my_followed',username=user.username)}}
+                            </div>
+                        </div>
+                    {% endblock %}

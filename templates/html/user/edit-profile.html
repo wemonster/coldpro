@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="zh">
+    <head>
+        <meta charset="UTF-8">
+        <meta name='viewport' content="width=device-width,initial-scale=1">
+        <title>profile</title>
+        <meta name='author' content="Peter Yang">
+        <meta name="keywords" content="online game highlights record and share">
+        <meta name='description' content="ColdPro is a place for you to record and share your gameplays and hightlights in gaming. It is free for all players and you can record and upload easily. You  you can enjoy other's plays or get appreciate for your own plays. Having fun here! Every can be their own pro~">
+        <link rel="shortcut icon" href="#" type='image/x-icon'>
+        <meta name="renderer" content="webkit">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <script src='http://ajax.aspnetcdn.com/ajax/jQuery/jquery-2.2.4.min.js'></script>
+        <link rel="stylesheet" href="/static/html/css/bootstrap.min.css">
+        <script src="/static/html/js/bootstrap.min.js"></script>
+        <link href="/static/html/css/font-awesome.min.css" rel='stylesheet' type='text/css'>
+        <link rel="stylesheet" type="text/css" href="/static/html/css/profile.css">
+        <link rel="stylesheet" href="/static/html/css/headfoot.css">
+        <!-- <link rel="stylesheet" href="/static/html/css/style.css"> -->
+        <link href="/static/html/js/summernote.css" rel="stylesheet">
+        <script src="/static/html/js/summernote.min.js"></script>
+        {# <script src="/static/html/js/scripts.js"></script> #}
+    </head>
+    <body style="background-color: #f1f1f1">
+        <nav class="navbar navbar-light navbar-fixed top">
+            <div class="container">
+                <div class="navbar-header">
+                    <button data-target='#navbarCollapse' data-toggle='collapse' class="navbar-toggle">
+                    <span class="sr-only">切换导航</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    </button>
+                    <a href="{{url_for('admin.index')}}" class="navbar-brand">Coldpro</a>
+                </div>
+                <div class="collapse navbar-collapse" id='navbarCollapse'>
+                    <ul class="nav navbar-nav">
+                        <li class="#active"><a href="{{url_for('admin.user_page',username=current_user.username)}}"><i class="fa fa-home"></i>Home</a></li>
+                        <li><a href="#" data-toggle='dropdown'><i class="fa fa-play-circle"></i>featured<b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="{{url_for('post.get_csgo_subpage')}}">Csgo</a></li>
+                            <li><a href="{{url_for('post.get_ow_subpage')}}">Overwatch</a></li>
+                            <li><a href="{{url_for('post.get_lol_subpage')}}">League of Legends</a></li>
+                            <li><a href="{{url_for('post.get_dota2_subpage')}}">Dota2</a></li>
+                            <li><a href="{{url_for('post.get_hs_subpage')}}">Hearthstone</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="videos.html"><i class="fa fa-star"></i>tops</a></li>
+                </ul>
+                <form action="#" class="navbar-form navbar-left">
+                    <input type="text" placeholder="search" class='form-control'>
+                    <button type="submit" class="btn btn-info">
+                    <i class="fa fa-search"></i>
+                    </button>
+                </form>
+                <ul class="nav navbar-nav navbar-right" id='logindetail'>
+                    <li><a href="{{url_for('post.uploads')}}"><i class="fa fa-cloud-upload"></i>upload</a></li>
+                    {% if current_user.is_authenticated %}
+                        <li class="user">
+                            <a href="javascript:;" data-toggle="dropdown" style="padding-bottom:10px;">
+                                {# <img src="/static/html/img/avatar-mini.jpg" alt=""> #}
+                                <img src="{{current_user.gravatar(size=100)}}" alt="">
+                                {% if current_user.nickname %}
+                                    {{ current_user.nickname}}
+                                {% else %}
+                                    {{current_user.username}}
+                                {% endif %}
+                                <span class=" fa fa-angle-down"></span>
+                            </a>
+                            <ul class="dropdown-menu dropdown-usermenu purple pull-right">
+                                <li><a href="{{url_for('admin.user_page',username=current_user.username)}}"> Profile</a></li>
+                                <li>
+                                    <a href="javascript:;">
+                                        <span class="badge bg-danger pull-right">40%</span>
+                                        <span>Settings</span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="javascript:;">
+                                        <span class="label bg-info pull-right">new</span>
+                                        Help
+                                    </a>
+                                </li>
+                                <li><a href="{{url_for('admin.logout')}}"><i class="fa fa-sign-out pull-right"></i> 退出登录</a></li>
+                            </ul>
+                        </li>
+                    {% endif %}
+                    <!-- <li id='login'><a href="#"><i class="fa fa-user"></i>login</a></li>
+                    <li id='signup'><a href="#"><i class="fa fa-sign-in"></i>sign up</a></li> -->
+                    <li class="dropdown">
+                        <a href="#" data-toggle='dropdown'><i class="fa fa-language"></i>language<b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="#">english</a></li>
+                            <li><a href="#">简体中文</a></li>
+                            <li><a href="#">繁體中文</a></li>
+                            <li><a href="#">日本語</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>  
+        </div>
+        </nav>
+    <div class="container">
+        <h1>Edit Profile</h1>
+        <hr>
+        <div class="row">
+            <!-- left column -->
+            <form action="#" method='POST' enctype="multipart/form-data">
+                <div class="col-md-3">
+                    <div class="text-center">
+                        <img src="{{current_user.gravatar(size=100)}}" class="avatar img-circle img-responsive"
+                        alt="avatar" style="height:100px;width:100px">
+                        <h6>Upload a different photo...</h6>
+                        <input type="file" class="form-control" name='useravatar' id='useravatar'>
+                    </div>
+                    <div class="clear"></div>
+                </div>
+                
+                
+                
+                <!-- edit form column -->
+                <div class="col-md-9 personal-info">
+                    {% with messages = get_flashed_messages(category_filter=['update'])%}
+                    {% if messages %}
+                        {% for message in messages %}
+                            <div class="alert alert-block alert-success fade in">
+                                {{message}}
+                            </div>
+                        {% endfor %}
+                    {% endif %}
+                {% endwith%}
+                <h3>Personal info</h3>
+                
+                <div class="form-group">
+                    <label label-default="" class="col-lg-3 control-label">nickname</label>
+                    <div class="col-lg-8">
+                        <input class="form-control" type="text" value="{{current_user.nickname if current_user.nickname else ''}}" style="margin-bottom:20px" name='nickname' id='nickname'>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label label-default="" class="col-lg-3 control-label">about me</label>
+                    <div class="col-lg-8">
+                        <input class="form-control" type="textarea" value="{{current_user.about_me if current_user.about_me else ''}}" style="margin-bottom:20px" name='about_me' id='about_me'>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label label-default="" class="col-lg-3 control-label ">Email:</label>
+                    <div class="col-lg-8">
+                        <input class="form-control" type="text" value="{{current_user.email if current_user.email else ''}}" style="margin-bottom:20px" name='email' id='email'>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label label-default="" class="col-md-3 control-label ">Username:</label>
+                    <div class="col-md-8">
+                        <input class="form-control" type="text" value="{{current_user.username}}" style="margin-bottom:20px" name='username' id='username'>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label label-default="" class="col-md-3 control-label ">Password:</label>
+                    <div class="col-md-8">
+                        <input class="form-control" type="password" value="{{current_user.password}}" style="margin-bottom:20px" name='password' id='password'>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label label-default="" class="col-md-3 control-label ">Confirm password:</label>
+                    <div class="col-md-8">
+                        <input class="form-control" type="password" value="{{current_user.repeat}}" style="margin-bottom:20px" name='repeat' id='repeat'>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label label-default="" class="col-md-3 control-label "></label>
+                    <div class="col-md-8">
+                        <input type="submit" class="btn btn-primary" value="Save Changes">
+                        <a href="{{url_for('admin.user_page',username=current_user.username)}}" class="btn btn-default">back</a>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+<hr>
+<script>
+jQuery(document).ready(function(){
+$('.summernote').summernote({
+height: 200,                 // set editor height
+minHeight: null,             // set minimum height of editor
+maxHeight: null,             // set maximum height of editor
+focus: true                 // set focus to editable area after initializing summernote
+});
+});
+</script>
+<footer id='homepagefooter' style="position: absolute;">
+    <div class="footer">
+        <div class="footerlinks">
+            <ul class="footerlink">
+                <li><a href="about-us.html">about</a></li>
+                <li><a href="daily-blog.html">Blog</a></li>
+                <li><a href="contact-us.html">Contact us</a></li>
+                <li><a href="cooperation.html">Cooperation</a></li>
+                <li><a href="developers.html">developers</a></li>
+                <li><a href="FAQ.html">FAQ</a></li>
+                <div class="clear"></div>
+            </ul>
+            <div class="clear"></div>
+        </div>
+        <p ><i class="fa fa-copyright">2016 www.coldpro.tv</i></p>
+    </div>
+</footer>
+</body>
+</html>

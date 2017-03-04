@@ -1,0 +1,191 @@
+{% extends 'user-subpage.html' %}
+{% block subheading %}
+    <div class="subheading">
+        <div class="tablewrap">
+            <table>
+                <tbody>
+                    <tr>
+                        <td class="table-current">
+                            <a href="{{url_for('admin.user_page',username=current_user.username)}}">
+                                <span class="options">Home</span>
+                                
+                            </a>
+                        </td>
+                        <td>
+                            <a href="{{url_for('admin.user_games')}}">
+                                <span class="options">Games</span>
+                                <span class="border-bottom"></span>
+                            </a>
+                        </td>
+                        <td>
+                            <a href="{{url_for('admin.user_upload')}}">
+                                <span class="options">Uploaded</span>
+                            </a>
+                        </td>
+                        <td>
+                            <a href="{{url_for('admin.favourite')}}">
+                                <span class="options">favourite</span>
+                            </a>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+{% endblock %}
+{% block bodypart %}
+    <div class="body">
+        <div class="mainbody">
+            <div class="body-content">
+                <div class="game-account">
+                    <table class="account-table table table-hover">
+                        <tr>
+                            <td class="tr-1">
+                                <a href="#" class="td-link">
+                                    <div class="Icon">
+                                        <img src="/static/html/img/lol50.jpg" alt="">
+                                    </div>
+                                    <div class="region">
+                                        <button class="btn btn-info">North America</button>
+                                    </div>
+                                </a>
+                            </td>
+                            <td class="tr-1">
+                                <a href="#" class="td-link">
+                                    <div class="Icon">
+                                        <img src="/static/html/img/dota50.png" alt="">
+                                    </div>
+                                    <div class="region">
+                                        <button class="btn btn-info">North America</button>
+                                    </div>
+                                </a>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="tr-2">
+                                <div class="td-link">
+                                    <div class="account-icon">
+                                        <img src="/static/html/img/CEO.JPG" alt="" class="img-circle">
+                                    </div>
+                                    <div class="game-id">
+                                        We monster
+                                    </div>
+                                </div>
+                            </td>
+                            <td class="tr-2">
+                                <div class="td-link">
+                                    <div class="account-icon">
+                                        <img src="/static/html/img/lol50.jpg" alt="">
+                                    </div>
+                                    <div class="game-id">
+                                        We monster
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="tr-3">
+                                <div class="date">
+                                    <span>last active:</span><time>22/09/1997</time>
+                                </div>
+                            </td>
+                            <td class="tr-3">
+                                <div class="date">
+                                    <span>last active:</span><time>22/09/1997</time>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="tr-4">
+                                <div class="launch">
+                                    <button class="btn btn-success">Launch Game</button>
+                                </div>
+                            </td>
+                            <td class="tr-4">
+                                <div class="launch">
+                                    <button class="btn btn-success">Launch Game</button>
+                                </div>
+                            </td>
+                        </tr>
+                    </table>
+                    <table class="account-table table table-hover">
+                        <tr>
+                            <td>
+                                <h4>You haven't linked to any account!</h4>
+                            </td>
+                            <td>
+                                <h4>You haven't linked to any account!</h4>
+                            </td>
+                        </tr>
+                    </table>
+                    <table class="account-table table table-hover">
+                        <tr>
+                            <td class="tr-1">
+                                <a href="#" class="td-link">
+                                    <div class="Icon">
+                                        <img src="/static/html/img/csgo50.jpg" alt="">
+                                    </div>
+                                    <div class="region">
+                                        <button class="btn btn-info">North America</button>
+                                    </div>
+                                </a>
+                            </td>
+                            <td class="tr-1">
+                                <a href="#" class="td-link">
+                                    <div class="Icon">
+                                        <img src="/static/html/img/hs50.jpg" alt="">
+                                    </div>
+                                    <div class="region">
+                                        <button class="btn btn-info">North America</button>
+                                    </div>
+                                </a>
+                            </td>
+                        </tr>
+                        <tr>*
+                            <td class="tr-2">
+                                <div class="td-link">
+                                    <input type="text" placeholder="summoner" class="form-control">
+                                    <button class="btn btn-danger"><i class="fa fa-search"></i></button>
+                                </div>
+                            </td>
+                            <td class="tr-2">
+                                <div class="td-link">
+                                    <div class="account-icon">
+                                        <img src="/static/html/img/ow50.png" alt="">
+                                    </div>
+                                    <div class="game-id">
+                                        We monster
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="tr-3">
+                                <div class="date">
+                                    <span>last active:</span><time>22/09/1997</time>
+                                </div>
+                            </td>
+                            <td class="tr-3">
+                                <div class="date">
+                                    <span>last active:</span><time>22/09/1997</time>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="tr-4">
+                                <div class="launch">
+                                    <button class="btn btn-success">Launch Game</button>
+                                </div>
+                            </td>
+                            <td class="tr-4">
+                                <div class="launch">
+                                    <button class="btn btn-success">Launch Game</button>
+                                </div>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

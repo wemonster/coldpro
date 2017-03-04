@@ -1,0 +1,72 @@
+{% extends 'user-subpage.html' %}
+{% block subheading %}
+    <div class="subheading">
+        <div class="tablewrap">
+            <table>
+                <tbody>
+                    <tr>
+                        <td class="table-current">
+                            <a href="{{url_for('admin.user_page',username=current_user.username)}}">
+                                <span class="options">Home</span>
+                                
+                            </a>
+                        </td>
+                        <td>
+                            <a href="{{url_for('admin.user_games')}}">
+                                <span class="options">Games</span>
+                            </a>
+                        </td>
+                        <td>
+                            <a href="{{url_for('admin.user_upload')}}">
+                                <span class="options">Uploaded</span>
+                            </a>
+                        </td>
+                        <td>
+                            <a href="{{url_for('admin.favourite')}}">
+                                <span class="options">favourite</span>
+                                <span class="border-bottom"></span>
+                            </a>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+{% endblock %}
+{% block bodypart %}
+    <div class="body">
+        <div class="mainbody">
+            <div class="body-content">
+                <div>
+                    <h3>My Favourites</h3>
+                </div>
+                <div class="content-video">
+                    <ul class="videos clear">
+                        <li class="video-item">
+                            <div class="main-content">
+                                <a href="">
+                                    <video preload="none" loop muted poster="img\logo.jpg" class="video">
+                                        <source src="video\Untitled1.mp4" type="video/mp4">
+                                    </video>
+                                </a>
+                            </div>
+                            <div class="content-info">
+                                <a href="#" class="title">title</a>
+                                <div class="info">
+                                    <a href=""><span>author</span></a>
+                                    <div class="show">
+                                        <span><b>2</b>views</span>
+                                        <span>|</span>
+                                        <span><b>2</b>likes</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+                        <div class="clear"></div>
+                    </ul>
+                    <div class="clear"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="zh">
+    <head>
+        <meta charset="UTF-8">
+        <meta name='viewport' content="width=device-width,initial-scale=1">
+        <title>profile</title>
+        <meta name='author' content="Peter Yang">
+        <meta name="keywords" content="online game highlights record and share">
+        <meta name='description' content="ColdPro is a place for you to record and share your gameplays and hightlights in gaming. It is free for all players and you can record and upload easily. You  you can enjoy other's plays or get appreciate for your own plays. Having fun here! Every can be their own pro~">
+        <link rel="shortcut icon" href="#" type='image/x-icon'>
+        <meta name="renderer" content="webkit">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <script src='http://ajax.aspnetcdn.com/ajax/jQuery/jquery-2.2.4.min.js'></script>
+        <link rel="stylesheet" href="/static/html/css/bootstrap.min.css">
+        <script src="/static/html/js/bootstrap.min.js"></script>
+        <link href="/static/html/css/font-awesome.min.css" rel='stylesheet' type='text/css'>
+        <link rel="stylesheet" type="text/css" href="/static/html/css/profile.css">
+        <link rel="stylesheet" href="/static/html/css/headfoot.css">
+        <!-- <link rel="stylesheet" href="/static/html/css/style.css"> -->
+        <link href="/static/html/js/summernote.css" rel="stylesheet">
+        <script src="/static/html/js/summernote.min.js"></script>
+        <link href="/static/html/css/dropzone.css" rel="stylesheet">
+        <script src="/static/html/js/dropzone.js"></script>
+        <link rel="stylesheet" href="/static/html/css/video.css">
+        <!--tagsinput-->
+        <link href="/static/html/css/tagsinput.css" rel="stylesheet">
+<!--         <script src='/static/html/upload-js/vendor/jquery.ui.widget.js'></script>
+        <script src='/static/html/upload-js/jquery.iframe-transport.js'></script>
+        <script src='/static/html/upload-js/jquery.fileupload.js'></script>
+         -->
+        
+        <!-- <link href="/static/html/css/style.css" rel="stylesheet"> -->
+        <link href="/static/html/css/style-responsive.css" rel="stylesheet">
+        <!-- <script src="/static/html/js/scripts.js"></script> -->
+    </head>
+    <body style="background-color: #f1f1f1">
+        <nav class="navbar navbar-light navbar-fixed top">
+            <div class="container">
+                <div class="navbar-header">
+                    <button data-target='#navbarCollapse' data-toggle='collapse' class="navbar-toggle">
+                    <span class="sr-only">切换导航</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    </button>
+                    <a href="{{url_for('admin.index')}}" class="navbar-brand">Coldpro</a>
+                </div>
+                <div class="collapse navbar-collapse" id='navbarCollapse'>
+                    <ul class="nav navbar-nav">
+                        <li class="#active"><a href="{{url_for('admin.user_page',username=current_user.username)}}"><i class="fa fa-home"></i>Home</a></li>
+                        <li><a href="#" data-toggle='dropdown'><i class="fa fa-play-circle"></i>featured<b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="{{url_for('post.get_csgo_subpage')}}">Csgo</a></li>
+                            <li><a href="{{url_for('post.get_ow_subpage')}}">Overwatch</a></li>
+                            <li><a href="{{url_for('post.get_lol_subpage')}}">League of Legends</a></li>
+                            <li><a href="{{url_for('post.get_dota2_subpage')}}">Dota2</a></li>
+                            <li><a href="{{url_for('post.get_hs_subpage')}}">Hearthstone</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="videos.html"><i class="fa fa-star"></i>tops</a></li>
+                </ul>
+                <form action="#" class="navbar-form navbar-left">
+                    <input type="text" placeholder="search" class='form-control'>
+                    <button type="submit" class="btn btn-info">
+                    <i class="fa fa-search"></i>
+                    </button>
+                </form>
+                <ul class="nav navbar-nav navbar-right" id='logindetail'>
+                    <li><a href="{{url_for('post.uploads')}}"><i class="fa fa-cloud-upload"></i>upload</a></li>
+                    {% if current_user.is_authenticated %}
+                        <li class="user">
+                            <a href="javascript:;" data-toggle="dropdown" style="padding-bottom:10px;">
+                                {# <img src="/static/html/img/avatar-mini.jpg" alt=""> #}
+                                <img src="{{current_user.gravatar(size=100)}}" alt="">
+                                {% if current_user.nickname %}
+                                    {{ current_user.nickname}}
+                                {% else %}
+                                    {{current_user.username}}
+                                {% endif %}
+                                <span class=" fa fa-angle-down"></span>
+                            </a>
+                            <ul class="dropdown-menu dropdown-usermenu purple pull-right">
+                                <li><a href="{{url_for('admin.user_page',username=current_user.username)}}"> Profile</a></li>
+                                <li>
+                                    <a href="javascript:;">
+                                        <span class="badge bg-danger pull-right">40%</span>
+                                        <span>Settings</span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="javascript:;">
+                                        <span class="label bg-info pull-right">new</span>
+                                        Help
+                                    </a>
+                                </li>
+                                <li><a href="{{url_for('admin.logout')}}"><i class="fa fa-sign-out pull-right"></i> 退出登录</a></li>
+                            </ul>
+                        </li>
+                    {% endif %}
+                    <!-- <li id='login'><a href="#"><i class="fa fa-user"></i>login</a></li>
+                    <li id='signup'><a href="#"><i class="fa fa-sign-in"></i>sign up</a></li> -->
+                    <li class="dropdown">
+                        <a href="#" data-toggle='dropdown'><i class="fa fa-language"></i>language<b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="#">english</a></li>
+                            <li><a href="#">简体中文</a></li>
+                            <li><a href="#">繁體中文</a></li>
+                            <li><a href="#">日本語</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <div class="container">
+        <h1 style='text-align: center'>Upload your video</h1>
+        <hr>
+        
+        <div class="col-md-6 col-md-offset-3">
+        {% with messages = get_flashed_messages(category_filter=['upload'])%}
+                    {% if messages %}
+                        {% for message in messages %}
+                            <div class="alert alert-block alert-success fade in">
+                                {{message}}
+                            </div>
+                        {% endfor %}
+                    {% endif %}
+                {% endwith%}
+            <form action="/video/submit-uploads/" method="POST" enctype="multipart/form-data">
+                <section class="panel">
+                    <header class="panel-heading">
+                        <span class="tools pull-right">
+                            <a class="fa fa-repeat box-refresh" href="javascript:;"></a>
+                            <a class="t-collapse fa fa-chevron-down" href="javascript:;"></a>
+                        </span>
+                    </header>
+                    <div class="panel-body" style='background-image:"/static/html/img/CEO.JPG" '>
+                        <div id="my-awesome-dropzone" class="dropzone">
+                            <input type="file" id='upload-video' name='upload-video' onchange='uploadfile()'>
+                            <div class="info"></div>
+                            <div class="progress progress-striped active progress-sm m-b-20" style="display:none">
+                                <div class="progress-bar progress-bar-success"  role="progressbar" aria-valuenow="45" aria-valuemin="0" aria-valuemax="100" id='progress'>
+                                    <span class="sr-only" style="position:relative;display:none"></span>
+                                </div>
+                                
+                            </div>
+                            <a class="btn btn-warning" style="display:none" id='cancel-upload' onclick='cancelupload()'><i class="glyphicon glyphicon-ban-circle"></i>Cancel</a>
+                        </div>
+                    </div>
+                </section>
+                <div class="form-group">
+                    {{form.game.label(class_='control-label col-lg-2 col-sm-2')}}
+                    <div class="col-lg-10" style='margin-top: 10px'>
+                        {{form.game(class_='form-control')}}
+                    </div>
+                </div>
+                <div class="form-group">
+                    {{ form.tags.label(class_='control-label col-lg-2 col-sm-2') }}
+                    <div class="col-lg-10" style='margin-top:10px'>
+                        {{ form.tags(class_='tags tags-input form-control',**{'data-type':'tags'}) }}
+                        <!-- <p class="help-block"></p> --> 
+                    </div>
+                </div>
+                <div class="form-group">
+                    {{form.title.label(class_='control-label col-lg-2 col-sm-2')}}
+                    <div class="col-lg-10" style='margin-top:10px'>
+                        {{form.title(class_='form-control')}}
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label label-default="" class="col-md-3 control-label "></label>
+                    <div class="col-md-8" style='margin-top: 15px;'>
+                        <button class="btn btn-primary" type="submit">Submit</button>
+                        <a href="{{url_for('admin.user_page',username=current_user.username)}}" class="btn btn-default">back</a>
+                    </div>
+                </div>
+            </form>
+        </div>
+        
+    </div>
+    <hr>
+    <script>
+        function uploadfile(){
+            var fileobj = document.getElementById('upload-video').files[0];
+            var filecontroller = '/video/uploading/';
+            var form = new FormData()
+            form.append('video',fileobj);
+            var xhr = new XMLHttpRequest();
+            xhr.open('POST',filecontroller,true);
+            xhr.onload = function(){
+                console.log(fileobj.name)
+                console.log(fileobj.size)
+                console.log('上传成功')
+            };
+            xhr.upload.addEventListener('progress',progressFunction,false);
+            xhr.send(form)
+        }
+        function progressFunction(evt){
+            var progressbar = $('#progress');
+            var fileobj = document.getElementById('upload-video').files[0];
+            if (evt.lengthComputable){    
+                var width = Math.round(evt.loaded/evt.total*100) + '%';
+                $('.info').text(fileobj.name + '   ' + parseFloat(evt.loaded/1000000).toFixed(2)+ '\/'+  parseFloat(evt.total/1000000).toFixed(2) + 'MB')
+                $('.progress-striped').css('display','block')
+                $('#cancel-upload').css('display','block')
+                progressbar.css('width',width)
+                $('.sr-only').css('display','block')
+                $('.sr-only').text(width + 'complete')
+            }
+        }
+        // function cancelupload(){
+        //     // var fileobj = document.getElementById('upload-video').files[0];
+        //     if (fileobj){
+        //         var data = {'exist':'yes','filename':fileobj.filename}
+        //     }else{
+        //         var data = {'exist':'no','filename':fileobj.filename}
+        //     }
+        //         $.ajax({
+        //             url: '/video/cancelupload/',
+        //             type: 'GET',
+        //             dataType: 'json',
+        //             data: data,
+        //         })
+        //         .done(function(response) {
+        //             if(response.msg == true){
+        //                 $('.progress-striped').css('display','block');
+        //                 $('#cancel-upload').css('display','none')
+        //                 $('#progress').css('width',0)
+        //                 $('.sr-only').css('display',none)
+        //                 $('.sr-only').text('0 complete')
+        //             }else{
+
+        //             }
+        //         })
+        //         .fail(function() {
+        //             console.log("error");
+        //         })
+        //         .always(function() {
+        //             console.log("complete");
+        //         });
+                
+        //     }
+        // }
+    </script><!--tags input-->
+        <script src="/static/html/js/tags-input.js"></script>
+        <!--tags input init-->
+        <script src="/static/html/js/tags-input-init.js"></script>
+    <footer id='homepagefooter'>
+        <div class="footer">
+            <div class="footerlinks">
+                <ul class="footerlink">
+                    <li><a href="about-us.html">about</a></li>
+                    <li><a href="daily-blog.html">Blog</a></li>
+                    <li><a href="contact-us.html">Contact us</a></li>
+                    <li><a href="cooperation.html">Cooperation</a></li>
+                    <li><a href="developers.html">developers</a></li>
+                    <li><a href="FAQ.html">FAQ</a></li>
+                    <div class="clear"></div>
+                </ul>
+                <div class="clear"></div>
+            </div>
+            <p ><i class="fa fa-copyright">2016 www.coldpro.tv</i></p>
+        </div>
+    </footer>
+    
+</body>
+</html>

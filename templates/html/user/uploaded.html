@@ -1,0 +1,187 @@
+{% extends 'user-subpage.html' %}
+{% block subheading %}
+    <div class="subheading">
+        <div class="tablewrap">
+            <table>
+                <tbody>
+                    <tr>
+                        <td class="table-current">
+                            <a href="{{url_for('admin.user_page',username=current_user.username)}}">
+                                <span class="options">Home</span>                                
+                            </a>
+                        </td>
+                        <td>
+                            <a href="{{url_for('admin.user_games')}}">
+                                <span class="options">Games</span>
+                            </a>
+                        </td>
+                        <td>
+                            <a href="{{url_for('admin.user_upload')}}">
+                                <span class="options">Uploaded</span>
+                                <span class="border-bottom"></span>
+                            </a>
+                        </td>
+                        <td>
+                            <a href="{{url_for('admin.favourite')}}">
+                                <span class="options">favourite</span>
+                            </a>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+{% endblock %}
+{% block bodypart %}
+    <div class="body">
+        <div class="mainbody">
+            <div class="body-content">
+                <div>
+                    <h3>Uploaded Videos</h3>
+                </div>
+                {% for post in posts %}
+                    
+                {% endfor %}
+                <div class="level level-1">
+                    <time>22/09/1009</time>
+                    <ul class="videos">
+                        {%for post in posts%}
+                        <li class="video-item">
+                            <div class="main-content">
+                                <a href="">
+                                    <video preload="none" loop muted  poster='{{post.body}}' class="video">
+                                        <source src="video\Untitled1.mp4" type="video/mp4">
+                                    </video>
+                                </a>
+                            </div>
+                            <div class="content-info">
+                                
+                                <a href="{{url_for('post.get_video',id=post.id)}}" class="title">
+                                    {{post.title}}
+                                </a>
+                                <div class="info">
+                                    <a href=""><span>{{post.author.nickname}}</span></a>
+                                    <div class="show">
+                                        <span><b>2</b>views</span>
+                                        <span>|</span>
+                                        <span><b>2</b>likes</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+                        {%endfor%}
+                        <li class="video-item">
+                            <div class="main-content">
+                                <a href="">
+                                    <video preload="none" loop muted poster="/static/html/img/logo.jpg" class="video">
+                                        <source src="video\Untitled1.mp4" type="video/mp4">
+                                    </video>
+                                </a>
+                            </div>
+                            <div class="content-info">
+                                <a href="#" class="title">title</a>
+                                <div class="info">
+                                    <a href=""><span>author</span></a>
+                                    <div class="show">
+                                        <span><b>2</b>views</span>
+                                        <span>|</span>
+                                        <span><b>2</b>likes</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+                        <div class="clear"></div>
+                    </ul>
+                    <div class="clear"></div>
+                </div>
+                <div class="level level-2">
+                    <time>22/09/1997</time>
+                    <ul class="videos">
+                        <li class="video-item">
+                            <div class="main-content">
+                                <a href="">
+                                    <video preload="none" loop muted poster="/static/html/img/logo.jpg" class="video">
+                                        <source src="video\Untitled1.mp4" type="video/mp4">
+                                    </video>
+                                </a>
+                            </div>
+                            <div class="content-info">
+                                <a href="#" class="title">title</a>
+                                <div class="info">
+                                    <a href=""><span>author</span></a>
+                                    <div class="show">
+                                        <span><b>2</b>views</span>
+                                        <span>|</span>
+                                        <span><b>2</b>likes</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+                        <li class="video-item">
+                            <div class="main-content">
+                                <a href="">
+                                    <video preload="none" loop muted poster="/static/html/img/logo.jpg" class="video">
+                                        <source src="video\Untitled1.mp4" type="video/mp4">
+                                    </video>
+                                </a>
+                            </div>
+                            <div class="content-info">
+                                <a href="#" class="title">title</a>
+                                <div class="info">
+                                    <a href=""><span>author</span></a>
+                                    <div class="show">
+                                        <span><b>2</b>views</span>
+                                        <span>|</span>
+                                        <span><b>2</b>likes</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+                        <li class="video-item">
+                            <div class="main-content">
+                                <a href="">
+                                    <video preload="none" loop muted poster="/static/html/img/logo.jpg" class="video">
+                                        <source src="video\Untitled1.mp4" type="video/mp4">
+                                    </video>
+                                </a>
+                            </div>
+                            <div class="content-info">
+                                <a href="#" class="title">title</a>
+                                <div class="info">
+                                    <a href=""><span>author</span></a>
+                                    <div class="show">
+                                        <span><b>2</b>views</span>
+                                        <span>|</span>
+                                        <span><b>2</b>likes</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+                        <li class="video-item">
+                            <div class="main-content">
+                                <a href="">
+                                    <video preload="none" loop muted poster="/static/html/img/logo.jpg" class="video">
+                                        <source src="video\Untitled1.mp4" type="video/mp4">
+                                    </video>
+                                </a>
+                            </div>
+                            <div class="content-info">
+                                <a href="#" class="title">title</a>
+                                <div class="info">
+                                    <a href=""><span>author</span></a>
+                                    <div class="show">
+                                        <span><b>2</b>views</span>
+                                        <span>|</span>
+                                        <span><b>2</b>likes</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+                        <div class="clear"></div>
+                    </ul>
+                    <div class="clear"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

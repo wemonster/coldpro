@@ -1,0 +1,108 @@
+{% extends 'user-subpage.html' %}
+{%block subheading%}
+<div class="subheading">
+    <div class="tablewrap">
+        <table>
+            <tbody>
+                <tr>
+                    <td class="table-current">
+                        <a href="{{url_for('admin.user_page',username=current_user.username)}}">
+                            <span class="options">Home</span>
+                            <span class="border-bottom"></span>
+                        </a>
+                    </td>
+                    <td>
+                        <a href="{{url_for('admin.user_games')}}">
+                            <span class="options">Games</span>
+                        </a>
+                    </td>
+                    <td>
+                        <a href="{{url_for('admin.user_upload')}}">
+                            <span class="options">Uploaded</span>
+                        </a>
+                    </td>
+                    <td>
+                        <a href="{{url_for('admin.favourite')}}">
+                            <span class="options">favourite</span>
+                        </a>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+{%endblock%}
+{% block bodypart %}
+    <div class="body">
+        <div class="mainbody">
+        {% for repost in reposts %}
+            <div class="events">
+                <div class="real-part">
+                    <div class="event-header">
+                        <div class="left-part">
+                            <div class="event-icon">
+                                <a href="">
+                                    <img src="{{current_user.gravatar(size=100)}}" alt="" class="event-icon-image img-circle">
+                                </a>
+                            </div>
+                        </div>
+                        <div class="right-part">
+                        <a class="btn btn-link comment" href="{{url_for('post.repost_delete',id=repost.id)}}" style='float:right'><i class="fa fa-trash fa-2x"></i></a>
+                            <div class="event-username">
+                                <a href="">{{current_user.nickname}}</a>
+                            </div>
+                            <div class="event-time">
+                                {{repost.timestamp.strftime('%d %b %Y %H:%M:%S')}}
+                            </div>
+                            <div class="event-comment">
+                                {{repost.repost_comment}}
+                            </div>
+                            <div class="event-content">
+                                <div class="content-body">
+                                    <div class="event-username">
+                                        <div class="repost-author">
+                                            <img src="{{repost.post.author.gravatar(size=100)}}" alt="">
+                                        </div>
+                                        <div class="repost-detail">
+                                            <a href="">{{repost.post.author.nickname}}</a>
+                                            <span class="event-time">{{repost.post.timestamp.strftime('%d %b %Y %H:%M:%S')}}</span>
+                                        </div>
+                                        <div class="clear"></div>                                      
+                                    </div>
+                                    <div class="event-comment" style="margin-bottom:5px;">
+                                        {{repost.post.title}}
+                                    </div>
+                                    <div class="event-video">
+                                        <div class="video-player">
+                                            <div class="mainvideo">
+                                                <video poster="/static/html/img/logo.jpg" class="video"  controls="controls" loop data-value='{{repost.post.id}}'>
+                                                    <source src="{{repost.post.body}}" type="video/mp4">
+                                                </video>
+                                            </div>
+                                            <div class="playbutton">
+                                                <button class="play"><i class="fa fa-play-circle-o fa-5x"></i></button>
+                                                <div class="clear"></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="event-info">
+                                        <div class="event-handle">
+                                            <ul class="event-list">
+                                                <li class="event-list-item border-right"><a href=""><i class="fa fa-share"></i>{{repost.reposter.repost.count()}}</a></li>
+                                                <li class="event-list-item border-right"><a href=""><i class="fa fa-comment"></i>{{repost.post.comments.count()}}</a></li>
+                                                <li class="event-list-item"><a href=""><i class="fa fa-thumbs-o-up"></i>{{repost.post.like.count()}}</a></li>
+                                                <div class="clear"></div>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+            
+        </div>
+    </div>
+{% endblock %}
