@@ -1,0 +1,2 @@
+Hello {{ user.username }}
+You have not confirmed your account yet.

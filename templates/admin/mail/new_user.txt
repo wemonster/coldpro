@@ -1,0 +1,5 @@
+Hi Peter
+
+A new user has registered to the Coldpro website!
+His username is {{ User.username }}
+His email address is {{ User.email }}

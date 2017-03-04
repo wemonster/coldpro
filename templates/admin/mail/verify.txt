@@ -1,0 +1,6 @@
+Dear {{ user}},
+
+you need to verify your email address. Click on the following link
+
+
+{{ url_for('admin.index',_external=True)}}
